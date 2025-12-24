@@ -9,18 +9,17 @@
 <div>
     <div>Ajouter une nouvelle conférence</div>
     <div>
-        <form th:action="@{/conference/add}" method="post">
+        <form method="post" th:action= "@{/conference/add}">
             <input type="text" name="title" required>
             <input type="date" name="date" required>
             <input type="time" name="startHour" required>
             <input type="time" name="endHour" required>
             <input type="text" name="description" required>
-            <select name="session" class="form-control" required>
-                <option value="">-- Choisir une session --</option>
+            <select name="sessionId" required>
+                <option value="">Select session</option>
                 <option th:each="s : ${listSessions}" th:value="${s.id}" th:text="${s.name}"></option>
             </select>
-            <button type="submit" class="btn btn-primary">Enregistrer la conférence</button>
-
+            <button type="submit">Enregister</button>
         </form>
     </div>
 
