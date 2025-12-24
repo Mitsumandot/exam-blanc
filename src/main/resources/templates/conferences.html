@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div>
+    <div>Ajouter une nouvelle conférence</div>
+    <div>
+        <form th:action="@{/conference/add}" method="post">
+            <input type="text" name="title" required>
+            <input type="date" name="date" required>
+            <input type="time" name="startHour" required>
+            <input type="time" name="endHour" required>
+            <input type="text" name="description" required>
+            <select name="session" class="form-control" required>
+                <option value="">-- Choisir une session --</option>
+                <option th:each="s : ${listSessions}" th:value="${s.id}" th:text="${s.name}"></option>
+            </select>
+            <button type="submit" class="btn btn-primary">Enregistrer la conférence</button>
+
+        </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Start Hour</th>
+            <th>End Hour</th>
+            <th>Session</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "c : ${listConferences}">
+            <td th:text="${c.title}"></td>
+            <td th:text="${c.date}"></td>
+            <td th:text="${c.startHour}"></td>
+            <td th:text="${c.endHour}"></td>
+            <td th:text="${c.session.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
