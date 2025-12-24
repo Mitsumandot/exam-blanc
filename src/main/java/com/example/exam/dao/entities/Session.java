@@ -27,7 +27,7 @@ public class Session {
     @JoinColumn(name = "moderator_id")
     private Moderator moderator;
 
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inscription> inscriptions;
 
     @OneToOne

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("session")
@@ -35,6 +36,15 @@ public class SessionController {
         session.setName(name);
 
         sessionService.addSession(session);
+
+        return "redirect:/session/index";
+    }
+
+    @PostMapping("/delete")
+    public String deleteConference(Model model, @RequestParam Long id){
+        Optional<Session> session = sessionService.getSessionById(id);
+
+        session.ifPresent(sessionService::deleteSession);
 
         return "redirect:/session/index";
     }

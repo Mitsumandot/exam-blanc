@@ -28,4 +28,9 @@ public class SessionService {
         return sessionRepository.findById(id);
     }
 
+    public Session deleteSession(Session session){
+        sessionRepository.delete(session);
+        return session;
+    }
+
 }
